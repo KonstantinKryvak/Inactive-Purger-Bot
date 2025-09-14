@@ -1,17 +1,16 @@
 
 
-import logging
+from dotenv  import load_dotenv
+from logging import basicConfig, INFO, FileHandler, StreamHandler
 
-
-from dotenv import load_dotenv
 load_dotenv()
 
 
 try:
-    logging.basicConfig(
-        format   ='%(asctime)s [%(levelname)s] %(message)s',
-        level    =logging.INFO,
-        handlers =[ logging.FileHandler('session.log'), logging.StreamHandler() ]
+    basicConfig(
+        format   = '%(asctime)s [%(levelname)s] %(message)s',
+        level    = INFO,
+        handlers = [FileHandler('session.log'), StreamHandler()]
     )
 
 
