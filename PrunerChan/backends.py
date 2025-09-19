@@ -113,6 +113,8 @@ async def prune_inactive_users(client, chat_id, threshold, dry_run=False, whitel
         elif isinstance(user.status, UserStatusEmpty) or not user.status:
             last_seen = datetime.now() - timedelta(days=365)
             logger.debug(f'{username}\'s status is \"Was seen long time ago...\" or has no status at all.')
+            skipped.append((user_id, username, 'Status unclear'))
+            continue
 
         if (datetime.now() - last_seen) > threshold:
             if dry_run:
